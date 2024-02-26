@@ -1,4 +1,4 @@
-lname: ecuaphotos-market-ci
+name: ecuaphotos-market-ci
 
 on:
   push:
