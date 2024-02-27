@@ -21,7 +21,8 @@
     "eject": "react-scripts eject",
     "lint": "npx eslint . --color",
     "format": "prettier --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "server": "npx json-server db.json"
   },
   "eslintConfig": {
     "extends": [
