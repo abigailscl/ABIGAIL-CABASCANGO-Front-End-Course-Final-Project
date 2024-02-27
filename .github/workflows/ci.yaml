@@ -3,11 +3,11 @@ name: ecuaphotos-market-ci
 on:
   push:
     branches:
-    - "**"
+      - '**'
 
   pull_request:
     branches:
-    - "**"
+      - '**'
 
 jobs:
   ci:
@@ -15,22 +15,22 @@ jobs:
     strategy:
       max-parallel: 5
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    
-    - name: Set up Python 3.8.x 
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: |
-        npm install
+      - name: Set up Python 3.8.x
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
 
-    - name: Lint with ESlint
-      run: |
-        npm run lint
+      - name: Install dependencies
+        run: |
+          npm install
 
-    - name: Test with jest
-      run: |
-        npm run test
+      - name: Lint with ESlint
+        run: |
+          npm run lint
+
+      - name: Test with jest
+        run: |
+          npm run test
