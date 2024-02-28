@@ -6,7 +6,7 @@ module.exports = {
   },
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
   setupFilesAfterEnv: ['./test/setupTests.ts'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  moduleFileExtensions: ['js', 'ts', 'tsx'],
   modulePaths: ['ecuaphotos-market/src'],
   moduleDirectories: ['node_modules', 'src'],
   testEnvironment: 'jsdom',
