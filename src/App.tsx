@@ -1,6 +1,10 @@
 import React from 'react';
+import { setupCookie, getCookie } from './config/mock_cookie/Cookie';
 
 function App() {
+  setupCookie();
+  getCookie();
+
   return (
     <div className="App">
       <header className="App-header">
