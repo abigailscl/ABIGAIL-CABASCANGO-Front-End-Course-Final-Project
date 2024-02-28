@@ -3,14 +3,14 @@
     {
       "id": "1",
       "title": "a title",
-      "price": 100,
+      "price": "$100",
       "description": "a description",
       "imageUrl": "url"
     },
     {
       "id": "2",
       "title": "another title",
-      "price": 200,
+      "price": "$200",
       "description": "another description"
     }
   ],

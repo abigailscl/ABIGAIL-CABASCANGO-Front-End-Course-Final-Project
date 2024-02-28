@@ -4,7 +4,7 @@ import { ILabelProps } from './types';
 
 const Label: React.FC<ILabelProps> = ({ text }) => {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', padding: 1 }}>
       <Typography sx={{ width: '100%' }} variant="h6" fontSize={18}>
         {text}
       </Typography>
