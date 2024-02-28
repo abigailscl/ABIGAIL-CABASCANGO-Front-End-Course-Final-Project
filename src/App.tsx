@@ -1,8 +1,9 @@
 import React from 'react';
-import { setupCookie } from './config/mock_cookie/Cookie';
+import { setupCookie, getCookie } from './config/mock_cookie/Cookie';
 
 function App() {
   setupCookie();
+  getCookie();
 
   return (
     <div className="App">

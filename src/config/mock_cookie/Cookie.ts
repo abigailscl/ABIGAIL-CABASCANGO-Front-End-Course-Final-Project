@@ -9,9 +9,11 @@ export const setupCookie = () => {
     .toString(stringBase)
     .substring(leadingToRemove);
   Cookies.set(cookieName, mockCookie);
+  localStorage.setItem(cookieName, mockCookie);
 };
 
 export const getCookie = () => {
   const currentCookie = Cookies.get(cookieName);
-  return currentCookie;
+  const localStorageCookie = localStorage.getItem(cookieName);
+  return currentCookie === localStorageCookie ? localStorageCookie : null;
 };
