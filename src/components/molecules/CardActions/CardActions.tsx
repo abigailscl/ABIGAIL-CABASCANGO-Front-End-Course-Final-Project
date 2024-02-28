@@ -14,9 +14,11 @@ const CardActionsPicture: React.FC<ICardActionsProps> = ({
   return (
     <CardActions>
       <Label text={labelText} />
-      <Typography variant="body2" color="text.secondary">
-        {priceText}
-      </Typography>
+      <Box sx={{ flexGrow: 1 }}>
+        <Typography variant="body2" color="text.secondary">
+          {priceText}
+        </Typography>
+      </Box>
       <Box justifyContent="flex-end">
         <Button color="inherit" fontColor="inherit" text={buttonText} />
       </Box>

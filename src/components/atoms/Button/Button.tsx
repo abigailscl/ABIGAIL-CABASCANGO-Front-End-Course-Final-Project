@@ -19,6 +19,7 @@ const Button: React.FC<IButtonProps> = ({
       startIcon={iconPosition === 'left' ? <>{icon}</> : null}
       endIcon={iconPosition === 'right' ? <>{icon}</> : null}
       onClick={onClick}
+      disableElevation
     >
       {text}
     </MuiButton>

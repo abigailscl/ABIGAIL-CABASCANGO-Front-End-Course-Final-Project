@@ -1,17 +1,12 @@
 import React from 'react';
 import { IToolbar } from './types';
-import { Toolbar as MUIToolbar } from '@mui/material';
+import { AppBar, Toolbar as MUIToolbar } from '@mui/material';
 
-const Toolbar: React.FC<IToolbar> = ({
-  children,
-  variant = 'regular',
-  style,
-  onClick,
-}) => {
+const Toolbar: React.FC<IToolbar> = ({ children, onClick }) => {
   return (
-    <MUIToolbar variant={variant} sx={style} onClick={onClick}>
-      {children}
-    </MUIToolbar>
+    <AppBar position="static">
+      <MUIToolbar onClick={onClick}>{children}</MUIToolbar>
+    </AppBar>
   );
 };
 

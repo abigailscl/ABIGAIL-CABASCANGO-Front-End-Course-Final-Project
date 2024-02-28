@@ -63,4 +63,12 @@ describe('Button component', () => {
 
     expect(buttonElement).not.toBeDisabled();
   });
+
+  test('should enables button with disable elevation', () => {
+    render(<Button text={buttonText} />);
+
+    const buttonElement = screen.getByRole('button');
+
+    expect(buttonElement).not.toHaveAttribute('boxShadow: none');
+  });
 });
