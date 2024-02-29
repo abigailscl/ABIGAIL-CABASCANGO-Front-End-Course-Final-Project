@@ -1,39 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Avatar, Box } from '@mui/material';
 import { Button, Label, Toolbar } from '../../components/atoms';
 import { PictureCatalog } from '../../components/templates';
-import { Avatar, Box } from '@mui/material';
+import { getCatalogPictures } from './catalogFunctions';
+import { IPicture, initialPicture } from '../../models';
 
 function Catalog() {
-  const pictures = [
-    {
-      id: '1',
-      title: 'Card 1',
-      description: 'Description 1',
-      price: '$101',
-      imageUrl: 'url1',
-    },
-    {
-      id: '2',
-      title: 'Card 2',
-      description: 'Description 2',
-      price: '$102',
-      imageUrl: 'url2',
-    },
-    {
-      id: '3',
-      title: 'Card 3',
-      description: 'Description 3',
-      price: '$103',
-      imageUrl: 'url3',
-    },
-    {
-      id: '4',
-      title: 'Card 4',
-      description: 'Description 4',
-      price: '$104',
-      imageUrl: 'url4',
-    },
-  ];
+  const [catalogPictures, setCatalogPictures] =
+    useState<IPicture[]>(initialPicture);
+
+  const getSnacksAsync = async () => {
+    const pictures: IPicture[] = await getCatalogPictures();
+    setCatalogPictures(pictures);
+  };
+
+  useEffect(() => {
+    getSnacksAsync();
+  }, []);
+
   return (
     <Box>
       <Toolbar>
@@ -48,8 +32,9 @@ function Catalog() {
         </Box>
         <Button text="Your cart" />
       </Toolbar>
-      ,
-      <PictureCatalog pictures={pictures} />
+      <div>
+        <PictureCatalog pictures={catalogPictures} />
+      </div>
     </Box>
   );
 }

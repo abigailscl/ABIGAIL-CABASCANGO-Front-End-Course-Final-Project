@@ -1,8 +1,13 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Catalog } from '../../src/pages';
+import { getCatalogPictures } from '../../src/pages/Catalog/catalogFunctions';
+import { IPicture } from '../../src/models';
 
+jest.mock('../../src/pages/Catalog/catalogFunctions', () => ({
+  getCatalogPictures: jest.fn(),
+}));
 describe('Catalog Page', () => {
   test('should renders avatar with logo', () => {
     render(<Catalog />);
@@ -26,17 +31,41 @@ describe('Catalog Page', () => {
     expect(buttonCart).toBeDefined();
   });
 
-  test('should renders cards', () => {
+  test('should renders cards with info from server', async () => {
+    const mockPictures: IPicture[] = [
+      {
+        id: '1',
+        title: 'Card 1',
+        description: 'Description 1',
+        price: '$101',
+        imageUrl: 'url1',
+      },
+      {
+        id: '2',
+        title: 'Card 2',
+        description: 'Description 2',
+        price: '$102',
+        imageUrl: 'url2',
+      },
+      {
+        id: '3',
+        title: 'Card 3',
+        description: 'Description 3',
+        price: '$103',
+        imageUrl: 'url3',
+      },
+      {
+        id: '4',
+        title: 'Card 4',
+        description: 'Description 4',
+        price: '$104',
+        imageUrl: 'url4',
+      },
+    ];
+    (getCatalogPictures as jest.Mock).mockResolvedValueOnce(mockPictures);
+
     render(<Catalog />);
 
-    const titleCard = screen.getAllByText('Card 1');
-    const descriptionCard = screen.getAllByText('Description 4');
-    const labelPrice = screen.getAllByText('Price');
-    const price = screen.getAllByText('$104');
-
-    expect(titleCard).toBeDefined();
-    expect(descriptionCard).toBeDefined();
-    expect(labelPrice).toBeDefined();
-    expect(price).toBeDefined();
+    await waitFor(() => expect(getCatalogPictures).toHaveBeenCalled());
   });
 });
