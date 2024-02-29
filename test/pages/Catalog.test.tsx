@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Catalog } from '../../src/pages';
 import { getCatalogPictures } from '../../src/pages/Catalog/catalogFunctions';
@@ -67,5 +67,51 @@ describe('Catalog Page', () => {
     render(<Catalog />);
 
     await waitFor(() => expect(getCatalogPictures).toHaveBeenCalled());
+  });
+
+  test('should renders cart drawer when click your cart button', async () => {
+    const mockPictures: IPicture[] = [
+      {
+        id: '1',
+        title: 'Card 1',
+        description: 'Description 1',
+        price: '$101',
+        imageUrl: 'url1',
+      },
+      {
+        id: '2',
+        title: 'Card 2',
+        description: 'Description 2',
+        price: '$102',
+        imageUrl: 'url2',
+      },
+      {
+        id: '3',
+        title: 'Card 3',
+        description: 'Description 3',
+        price: '$103',
+        imageUrl: 'url3',
+      },
+      {
+        id: '4',
+        title: 'Card 4',
+        description: 'Description 4',
+        price: '$104',
+        imageUrl: 'url4',
+      },
+    ];
+    (getCatalogPictures as jest.Mock).mockResolvedValueOnce(mockPictures);
+
+    render(<Catalog />);
+
+    const buttonCarts = screen.getAllByRole('button');
+    const yourCartButton = buttonCarts[2];
+
+    expect(yourCartButton).toBeInTheDocument();
+
+    fireEvent.click(yourCartButton);
+
+    await waitFor(() => expect(screen.getAllByText('Wishes')));
+    expect(buttonCarts).toBeDefined();
   });
 });

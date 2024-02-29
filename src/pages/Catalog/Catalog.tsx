@@ -4,18 +4,24 @@ import { Button, Label, Toolbar } from '../../components/atoms';
 import { PictureCatalog } from '../../components/templates';
 import { getCatalogPictures } from './catalogFunctions';
 import { IPicture, initialPicture } from '../../models';
+import { CartDrawer } from '../../components/organisms/Drawer';
 
 function Catalog() {
   const [catalogPictures, setCatalogPictures] =
     useState<IPicture[]>(initialPicture);
+  const [openDrawer, setOpenDrawer] = React.useState(false);
 
-  const getSnacksAsync = async () => {
+  const getPicturesAsync = async () => {
     const pictures: IPicture[] = await getCatalogPictures();
     setCatalogPictures(pictures);
   };
 
+  const toggleDrawer = (open: boolean) => () => {
+    setOpenDrawer(open);
+  };
+
   useEffect(() => {
-    getSnacksAsync();
+    getPicturesAsync();
   }, []);
 
   return (
@@ -30,7 +36,18 @@ function Catalog() {
           <Button text="Catalog" />
           <Button text="About us" />
         </Box>
-        <Button text="Your cart" />
+        <div>
+          <Button
+            data-testid="cart-button"
+            text="Your cart"
+            onClick={toggleDrawer(true)}
+          />
+          <CartDrawer
+            openDrawer={openDrawer}
+            onClose={toggleDrawer(false)}
+            cartItems={catalogPictures}
+          />
+        </div>
       </Toolbar>
       <div>
         <PictureCatalog pictures={catalogPictures} />
