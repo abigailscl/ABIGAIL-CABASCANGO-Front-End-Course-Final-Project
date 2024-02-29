@@ -5,3 +5,13 @@ export interface IPicture {
   price: string;
   imageUrl: string;
 }
+
+export const initialPicture: IPicture[] = [
+  {
+    id: '',
+    title: '',
+    description: '',
+    price: '',
+    imageUrl: '',
+  },
+];
